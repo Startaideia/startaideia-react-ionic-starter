@@ -22,12 +22,15 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "../theme/variables.scss";
+import { GlobalProvider } from "./shared/providers";
 
 function App() {
   return (
-    <IonApp>
-      <Routes />
-    </IonApp>
+    <GlobalProvider>
+      <IonApp>
+        <Routes />
+      </IonApp>
+    </GlobalProvider>
   );
 }
 

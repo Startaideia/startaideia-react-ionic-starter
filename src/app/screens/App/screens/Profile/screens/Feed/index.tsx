@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { Placeholder } from "app/shared";
+import { Placeholder, useGlobal } from "app/shared";
 
 function Feed() {
+  const { set } = useGlobal();
+
+  useEffect(
+    function () {
+      set("app.title", "Feed");
+    },
+    [set]
+  );
+
   return <Placeholder title="Feed" />;
 }
 

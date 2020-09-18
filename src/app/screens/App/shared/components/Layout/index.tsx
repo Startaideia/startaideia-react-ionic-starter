@@ -6,13 +6,16 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { useGlobal } from "app/shared";
 
 function Layout({ children }) {
+  const { get } = useGlobal();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ionic React Starter</IonTitle>
+          <IonTitle>{get("app.title", "Ionic React Starter")}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>{children}</IonContent>
