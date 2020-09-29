@@ -22,15 +22,21 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "../theme/variables.scss";
+
+/* Providers */
 import { GlobalProvider } from "./shared/providers";
+import { Provider } from "react-redux";
+import store from "store";
 
 function App() {
   return (
-    <GlobalProvider>
-      <IonApp>
-        <Routes />
-      </IonApp>
-    </GlobalProvider>
+    <Provider store={store}>
+      <GlobalProvider>
+        <IonApp>
+          <Routes />
+        </IonApp>
+      </GlobalProvider>
+    </Provider>
   );
 }
 
