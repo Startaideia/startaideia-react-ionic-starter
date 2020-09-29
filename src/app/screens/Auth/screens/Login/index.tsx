@@ -3,7 +3,7 @@ import { Form, Input, Submit } from "@startaideia/react-forms";
 import { IonLoading, IonToast } from "@ionic/react";
 import { connect } from "react-redux";
 
-import { Container, Brand } from "./styles";
+import { Container, Brand, Link } from "./styles";
 import logo from "assets/images/logo.svg";
 import { authActions } from "store";
 
@@ -26,6 +26,9 @@ function Login({ loading, error, login }) {
         <Form.Footer>
           <Submit>Entrar</Submit>
         </Form.Footer>
+        <Form.Col xs={12}>
+          <Link to="/auth/signup">Criar uma conta</Link>
+        </Form.Col>
       </Form>
       {error && (
         <IonToast isOpen={true} message={error} duration={200} color="danger" />
