@@ -1,5 +1,5 @@
 import { authService } from "services";
-import { LOADING, LOGIN, SIGNUP, FAILED } from "./auth.types";
+import { LOADING, LOGIN, SIGNUP, FAILED, LOGOUT } from "./auth.types";
 
 /**
  * Handle user login
@@ -12,10 +12,10 @@ export function login(loginData) {
         type: LOADING,
         payload: true,
       });
-      const payload = await authService.login(loginData);
+      const { data } = await authService.login(loginData);
       dispatch({
         type: LOGIN,
-        payload,
+        payload: data.token,
       });
     } catch ({ response }) {
       dispatch({
@@ -37,10 +37,10 @@ export function signup(signupData) {
         type: LOADING,
         payload: true,
       });
-      const payload = await authService.signup(signupData);
+      const { data } = await authService.signup(signupData);
       dispatch({
         type: SIGNUP,
-        payload,
+        payload: data.token,
       });
     } catch ({ response }) {
       dispatch({
@@ -51,7 +51,19 @@ export function signup(signupData) {
   };
 }
 
+/**
+ * Log a user out
+ *
+ */
+export function logout() {
+  return {
+    type: LOGOUT,
+    payload: null,
+  };
+}
+
 export default {
   signup,
+  logout,
   login,
 };

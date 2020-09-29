@@ -3,14 +3,15 @@ import { IonReactRouter } from "@ionic/react-router";
 import { IonRouterOutlet } from "@ionic/react";
 
 import { Auth, App } from "../screens";
-import { Redirect, Route } from "react-router";
+import { Redirect } from "react-router";
+import { Guest, Auth as User } from "app/shared";
 
 function Routes() {
   return (
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/auth" component={Auth.Routes} />
-        <Route path="/profile" component={App.Routes} />
+        <Guest path="/auth" component={Auth.Routes} />
+        <User path="/profile" component={App.Routes} />
         <Redirect from="/" to="/profile" exact />
       </IonRouterOutlet>
     </IonReactRouter>

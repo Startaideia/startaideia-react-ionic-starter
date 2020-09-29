@@ -1,7 +1,7 @@
-import { LOADING, LOGIN, FAILED, SIGNUP } from "./auth.types";
+import { LOADING, LOGIN, FAILED, SIGNUP, LOGOUT } from "./auth.types";
 
 const INITIAL_STATE = {
-  user: null,
+  token: localStorage.getItem("__auth"),
   error: null,
   loading: false,
 };
@@ -10,11 +10,16 @@ export default function (state = INITIAL_STATE, action) {
   const { type, payload } = action;
   switch (type) {
     case LOGIN:
-      return { ...state, user: payload, loading: false, error: null };
+      localStorage.setItem("__auth", payload);
+      return { ...state, token: payload, loading: false, error: null };
     case SIGNUP:
-      return { ...state, user: payload, loading: false, error: null };
+      localStorage.setItem("__auth", payload);
+      return { ...state, token: payload, loading: false, error: null };
     case FAILED:
-      return { ...state, user: null, loading: false, error: payload };
+      return { ...state, token: null, loading: false, error: payload };
+    case LOGOUT:
+      localStorage.removeItem("__auth");
+      return { ...state, token: null, loading: false, error: null };
     case LOADING:
       return { ...state, loading: payload };
   }
