@@ -7,9 +7,9 @@ import { Container, Brand } from "./styles";
 import logo from "assets/images/logo.svg";
 import { authActions } from "store";
 
-function Login({ loading, error, login }) {
+function Signup({ loading, error, signup }) {
   function handleSubmit(data) {
-    login(data);
+    signup(data);
   }
 
   return (
@@ -21,14 +21,25 @@ function Login({ loading, error, login }) {
         <Form.Col xs={12}>
           <h1>Entrar</h1>
         </Form.Col>
+        <Input.Text name="name" label="Nome" isRequired />
         <Input.Email isRequired />
         <Input.Password isRequired />
+        <Input.Password
+          name="password_confirmation"
+          label="Confirme a senha"
+          isRequired
+        />
         <Form.Footer>
-          <Submit>Entrar</Submit>
+          <Submit>Criar uma conta</Submit>
         </Form.Footer>
       </Form>
       {error && (
-        <IonToast isOpen={true} message={error} duration={200} color="danger" />
+        <IonToast
+          isOpen={!!error}
+          message={error}
+          duration={2000}
+          color="danger"
+        />
       )}
       {loading && <IonLoading isOpen={true} />}
     </Container>
@@ -41,8 +52,8 @@ function mapStateToProps({ auth }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: (loginData) => dispatch(authActions.login(loginData)),
+    signup: (signupData) => dispatch(authActions.signup(signupData)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -1,9 +1,9 @@
 import React from "react";
-import { IonRouterOutlet } from "@ionic/react";
 import { Route, useRouteMatch } from "react-router";
+import { IonRouterOutlet } from "@ionic/react";
 
+import { Signup, Login } from "../screens";
 import { Layout } from "../shared";
-import { Login } from "../screens";
 
 function Routes() {
   const { path } = useRouteMatch();
@@ -11,6 +11,7 @@ function Routes() {
   return (
     <Layout>
       <IonRouterOutlet>
+        <Route path={`${path}/signup`} component={Signup} exact />
         <Route path={`${path}/login`} component={Login} exact />
       </IonRouterOutlet>
     </Layout>

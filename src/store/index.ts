@@ -3,9 +3,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 /* Store reducers */
+import authReducer from "./auth/auth.reducer";
 import appReducer from "./app/app.reducer";
 
 const reducers = combineReducers({
+  auth: authReducer,
   app: appReducer,
 });
 
@@ -17,4 +19,5 @@ const store = createStore(
 export default store;
 
 /* Exports actions */
+export { default as authActions } from "./auth/auth.actions";
 export { default as appActions } from "./app/app.actions";

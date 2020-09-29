@@ -23,6 +23,9 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "../theme/variables.scss";
 
+/* Forms styling */
+import "@startaideia/react-forms/dist/index.css";
+
 /* Providers */
 import { GlobalProvider } from "./shared/providers";
 import { Provider } from "react-redux";
